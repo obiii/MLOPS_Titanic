@@ -20,6 +20,9 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Setup Kaggle
         run: pip install kaggle
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KagglKAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
       - name: Run Kaggle command
         run: kaggle competitions list 
         env:
