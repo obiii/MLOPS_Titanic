@@ -25,7 +25,7 @@ jobs:
           dvc repro
 
           git fetch --prune
-          dvc metrics show --show-md master > report.md
+          dvc metrics show --show-md main > report.md
           cml-send-comment report.md
         env:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
