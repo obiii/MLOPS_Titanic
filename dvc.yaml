@@ -1,11 +1,11 @@
 stages:
   titanic_data:
     cmd: 
-    - kaggle competitions download -c titanic -f train.csv
-    - kaggle competitions download -c titanic -f test.csv
+    - kaggle competitions download -c titanic -f train.csv -p data/
+    - kaggle competitions download -c titanic -f test.csv -p data/
     outs:
-    - train.csv
-    - test.csv
+    - data/train.csv
+    - data/test.csv
   prepare:
     cmd: python code/prepare.py
     deps:

@@ -19,16 +19,6 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
-      - name: Setup Kaggle
-        run: pip install kaggle
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
-      - name: Run Kaggle command
-        run: kaggle competitions list 
-        env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
       - name: Write CML report
         run: |
           pip install -r requirements.txt
@@ -37,4 +27,7 @@ jobs:
           git fetch --prune
           dvc metrics show --show-md master > report.md
           cml-send-comment report.md
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
 
