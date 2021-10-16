@@ -1,2 +1,8 @@
 dvc
 kaggle
+pandas
+numpy
+json
+joblib
+pickle
+scikit-learn
