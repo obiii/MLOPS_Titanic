@@ -1,0 +1,4 @@
+[core]
+    remote = fs
+['remote "fs"']
+    url = /Users/obaid/Downloads/dvc-remote
