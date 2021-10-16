@@ -32,4 +32,7 @@ jobs:
           KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update readme
+        run: |
+          cat report.md >> README.md
 
