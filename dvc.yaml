@@ -7,3 +7,19 @@ stages:
     cmd: kaggle competitions download -c titanic -f test.csv
     outs:
     - test.csv
+  prepare:
+    cmd: python code/prepare.py
+    deps:
+    - data/test.csv
+    - data/train.csv
+    outs:
+    - data/test_prepared.pkl
+    - data/train_prepared.pkl
+  train:
+    cmd: python code/train.py
+    deps:
+    - code/train.py
+    - data/test_prepared.pkl
+    - data/train_prepared.pkl
+    metrics:
+    - data/metrics.json
