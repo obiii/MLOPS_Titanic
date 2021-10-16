@@ -19,9 +19,11 @@ jobs:
       #   with:
       #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
-      - name: Write CML report
+      - name: Install dependencies
         run: |
           pip install -r requirements.txt
+      - name: Execute DVC Repro
+        run: |
           dvc repro
 
           git fetch --prune
