@@ -26,7 +26,7 @@ jobs:
       - name: Run Kaggle command
         run: kaggle competitions list 
         env:
-          KAGGLE_USERNAME: ${{ secrets.KagglKAGGLE_USERNAME }}
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
           KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
       - name: Write CML report
         run: |
