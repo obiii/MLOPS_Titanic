@@ -25,8 +25,6 @@ jobs:
       - name: Execute DVC Repro
         run: |
           dvc repro
-
-          git fetch --prune
           dvc metrics show --show-md main >> report.md
           cml-send-comment report.md
         env:
