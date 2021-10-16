@@ -1,0 +1,9 @@
+stages:
+  titanic_data:
+    cmd: kaggle competitions download -c titanic -f train.csv
+    outs:
+    - train.csv
+  titanic_data_test:
+    cmd: kaggle competitions download -c titanic -f test.csv
+    outs:
+    - test.csv
