@@ -1,24 +1,4 @@
-name: CML Report
-on: push
-jobs:
-  run:
-    runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml:0-dvc2-base1
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Generate metrics report
-        env:
-          REPO_TOKEN: ${{ secrets.lenovoToken }}
-        run: |
-          echo "## Metrics" >> report.md
-
-          dvc metrics show  >> report.md
-
-          cml-send-comment report.md
-
-name: your-workflow-name
+name: ML Pipeline
 on: [push]
 jobs:
   run:
