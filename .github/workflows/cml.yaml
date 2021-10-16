@@ -10,9 +10,42 @@ jobs:
           fetch-depth: 0
       - name: Generate metrics report
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.lenovoToken }}
         run: |
           echo "## Metrics" >> report.md
+
           dvc metrics show  >> report.md
 
           cml-send-comment report.md
+
+name: your-workflow-name
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v2
+      # may need to setup NodeJS & Python3 on e.g. self-hosted
+      # - uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '12'
+      # - uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: Train model
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python train.py
+      - name: Write CML report
+        run: |
+          pip install -r requirements.txt
+          dvc repro
+
+          git fetch --prune
+          dvc metrics show --show-md master > report.md
+          cml-send-comment report.md
+

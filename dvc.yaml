@@ -21,7 +21,8 @@ stages:
     - data/test_prepared.pkl
     - data/train_prepared.pkl
     metrics:
-    - metrics/metrics.json
+    - metrics/metrics.json:
+        cache: false
     outs:
     - models/bestModel.joblib
   inference:

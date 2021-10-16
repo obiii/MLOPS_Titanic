@@ -53,8 +53,8 @@ stages:
     cmd: python code/train.py
     deps:
     - path: code/train.py
-      md5: 6815c6e330e00d1a36dc38821d70f522
-      size: 1792
+      md5: f132c233c6048e5597a82af475a1979c
+      size: 1755
     - path: data/test_prepared.pkl
       md5: 3c1e3a90f88c1b402406b11d5f8ed507
       size: 32573
@@ -72,8 +72,8 @@ stages:
     cmd: python code/inference.py
     deps:
     - path: code/inference.py
-      md5: 0b94a4cd61936bef93f9c1ae98818751
-      size: 324
+      md5: 9e04c98fe35aa76268f0af3782783d73
+      size: 274
     - path: data/test_prepared.pkl
       md5: 3c1e3a90f88c1b402406b11d5f8ed507
       size: 32573
