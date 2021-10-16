@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import json
+from joblib import dump, load
 
 from sklearn.linear_model import LogisticRegression, RidgeClassifierCV
 from sklearn.svm import SVC, LinearSVC
@@ -43,5 +44,8 @@ y_pred = decision_tree.predict(x_test)
 acc_decision_tree = round(decision_tree.score(x_train, y_train) * 100, 2)
 results['Decission Tree (ACC)'] = acc_decision_tree
 
-with open('data/metrics.json', 'w') as fp:
+with open('metrics/metrics.json', 'w') as fp:
     json.dump(results, fp, indent=2, sort_keys=True)
+
+dump(svc, 'models/bestModel.joblib') 
+

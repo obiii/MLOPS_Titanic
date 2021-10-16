@@ -1,15 +1,20 @@
 schema: '2.0'
 stages:
   titanic_data:
-    cmd: kaggle competitions download -c titanic -f train.csv
+    cmd:
+    - kaggle competitions download -c titanic -f train.csv
+    - kaggle competitions download -c titanic -f test.csv
     outs:
-    - path: data/train.csv
+    - path: test.csv
+      md5: 029c9cd22461f6dbe8d9ab01def965c6
+      size: 28629
+    - path: train.csv
       md5: 61fdd54abdbf6a85b778e937122e1194
       size: 61194
   titanic_data_test:
     cmd: kaggle competitions download -c titanic -f test.csv
     outs:
-    - path: data/test.csv
+    - path: test.csv
       md5: 029c9cd22461f6dbe8d9ab01def965c6
       size: 28629
   prepare:
@@ -48,8 +53,8 @@ stages:
     cmd: python code/train.py
     deps:
     - path: code/train.py
-      md5: 15512f6df3f3dd7b235bb2f73df818fd
-      size: 1676
+      md5: 6815c6e330e00d1a36dc38821d70f522
+      size: 1792
     - path: data/test_prepared.pkl
       md5: 3c1e3a90f88c1b402406b11d5f8ed507
       size: 32573
@@ -57,6 +62,25 @@ stages:
       md5: 2470d3919e5af52906c47bc3514a4e60
       size: 74731
     outs:
-    - path: data/metrics.json
+    - path: metrics/metrics.json
       md5: bafb81e41f66de16e50c45906b6d3615
       size: 119
+    - path: models/bestModel.joblib
+      md5: f005ea00a4d217492cf832166b724682
+      size: 94621
+  inference:
+    cmd: python code/inference.py
+    deps:
+    - path: code/inference.py
+      md5: 0b94a4cd61936bef93f9c1ae98818751
+      size: 324
+    - path: data/test_prepared.pkl
+      md5: 3c1e3a90f88c1b402406b11d5f8ed507
+      size: 32573
+    - path: models/bestModel.joblib
+      md5: f005ea00a4d217492cf832166b724682
+      size: 94621
+    outs:
+    - path: inference/predictions.csv
+      md5: a0c9436078c89a5851bdcba55bbe25ac
+      size: 2830

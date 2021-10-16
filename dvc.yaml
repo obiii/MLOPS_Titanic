@@ -1,11 +1,10 @@
 stages:
   titanic_data:
-    cmd: kaggle competitions download -c titanic -f train.csv
+    cmd: 
+    - kaggle competitions download -c titanic -f train.csv
+    - kaggle competitions download -c titanic -f test.csv
     outs:
     - train.csv
-  titanic_data_test:
-    cmd: kaggle competitions download -c titanic -f test.csv
-    outs:
     - test.csv
   prepare:
     cmd: python code/prepare.py
@@ -22,4 +21,14 @@ stages:
     - data/test_prepared.pkl
     - data/train_prepared.pkl
     metrics:
-    - data/metrics.json
+    - metrics/metrics.json
+    outs:
+    - models/bestModel.joblib
+  inference:
+    cmd: python code/inference.py
+    deps:
+    - code/inference.py
+    - models/bestModel.joblib
+    - data/test_prepared.pkl
+    outs:
+    - inference/predictions.csv
