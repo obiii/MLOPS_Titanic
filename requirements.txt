@@ -2,7 +2,7 @@ dvc
 kaggle
 pandas
 numpy
-json
+jsons
 joblib
 pickle
 scikit-learn
