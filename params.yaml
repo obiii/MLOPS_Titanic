@@ -10,4 +10,6 @@ train:
   seed: 20170428
   n_est: 50
   min_split: 2
-  solver: 'lbfgs'
+  solver: 'newton-cg'
+  criterion: 'entropy'
+  kernel: 'linear'

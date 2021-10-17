@@ -20,6 +20,8 @@ with open("params.yaml", 'r') as fd:
     params = params['train']
 
 solver = params['solver']
+crit = params['criterion']
+kernel = params['kernel']
 
 # Result Dictionary
 results = {}
@@ -38,14 +40,14 @@ acc_log = round(logreg.score(x_train, y_train) * 100, 2)
 results['Logistic Regression (ACC)'] = acc_log
 
 # Support Vector Machines
-svc = SVC(gamma='auto')
+svc = SVC(gamma='auto',kernel=kernel)
 svc.fit(x_train, y_train)
 y_pred = svc.predict(x_test)
 acc_svc = round(svc.score(x_train, y_train) * 100, 2)
 results['Support Vector Machines (ACC)'] = acc_svc
 
 # Decision Tree
-decision_tree = DecisionTreeClassifier()
+decision_tree = DecisionTreeClassifier(criterion=crit)
 decision_tree.fit(x_train, y_train)
 y_pred = decision_tree.predict(x_test)
 acc_decision_tree = round(decision_tree.score(x_train, y_train) * 100, 2)

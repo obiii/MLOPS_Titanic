@@ -53,8 +53,8 @@ stages:
     cmd: python code/train.py
     deps:
     - path: code/train.py
-      md5: 361e183ae69c0389901bf721d99535e1
-      size: 1899
+      md5: b729f77e9033b32c30d1a6c0073308eb
+      size: 1982
     - path: data/test_prepared.pkl
       md5: 3c1e3a90f88c1b402406b11d5f8ed507
       size: 32573
@@ -63,14 +63,14 @@ stages:
       size: 74731
     params:
       params.yaml:
-        train.solver: lbfgs
+        train.solver: newton-cg
     outs:
     - path: metrics/metrics.json
-      md5: bafb81e41f66de16e50c45906b6d3615
+      md5: 2678131fb24c004beee1a293245a7bc7
       size: 119
     - path: models/bestModel.joblib
-      md5: f005ea00a4d217492cf832166b724682
-      size: 94621
+      md5: 185487d68cad0a100e9ef78945789df4
+      size: 44836
   inference:
     cmd: python code/inference.py
     deps:
@@ -81,9 +81,9 @@ stages:
       md5: 3c1e3a90f88c1b402406b11d5f8ed507
       size: 32573
     - path: models/bestModel.joblib
-      md5: f005ea00a4d217492cf832166b724682
-      size: 94621
+      md5: 185487d68cad0a100e9ef78945789df4
+      size: 44836
     outs:
     - path: inference/predictions.csv
-      md5: a0c9436078c89a5851bdcba55bbe25ac
+      md5: ea55d95de19f3a5d7378f74b6d3685fa
       size: 2830
