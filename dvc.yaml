@@ -20,6 +20,8 @@ stages:
     - code/train.py
     - data/test_prepared.pkl
     - data/train_prepared.pkl
+    params:
+    - train.solver
     metrics:
     - metrics/metrics.json:
         cache: false

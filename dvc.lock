@@ -61,6 +61,9 @@ stages:
     - path: data/train_prepared.pkl
       md5: 2470d3919e5af52906c47bc3514a4e60
       size: 74731
+    params:
+      params.yaml:
+        train.solver: lbfgs
     outs:
     - path: metrics/metrics.json
       md5: bafb81e41f66de16e50c45906b6d3615
