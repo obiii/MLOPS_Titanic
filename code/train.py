@@ -13,6 +13,13 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score
+import yaml
+
+with open("params.yaml", 'r') as fd:
+    params = yaml.safe_load(fd)
+    params = params['train']
+
+solver = params['solver']
 
 # Result Dictionary
 results = {}
@@ -24,7 +31,7 @@ x_train = train.drop(['Survived'], axis = 1)
 y_train = train['Survived']
 
 # Logistic Regression
-logreg = LogisticRegression(solver='lbfgs', max_iter = 1000)
+logreg = LogisticRegression(solver=solver, max_iter = 1000)
 logreg.fit(x_train, y_train)
 y_pred = logreg.predict(x_test)
 acc_log = round(logreg.score(x_train, y_train) * 100, 2)
